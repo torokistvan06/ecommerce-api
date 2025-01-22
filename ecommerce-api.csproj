@@ -4,29 +4,25 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>EcommerceApi</RootNamespace>
+    <RootNamespace>EcommerceApi</RootNamespace>    
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Minio" Version="6.0.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers/" />
-    <Folder Include="DTO/" />
-    <Folder Include="DTO/Incoming/" />
-    <Folder Include="DTO/Outgoing/" />
-    <Folder Include="Mappers/" />
     <Folder Include="Models/" />
-    <Folder Include="Repository/" />
-    <Folder Include="Service/" />
   </ItemGroup>
 
 </Project>
