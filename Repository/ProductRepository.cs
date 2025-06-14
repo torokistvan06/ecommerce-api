@@ -14,11 +14,19 @@ public class ProductRepository
         _context = context;
         _dbSet = _context.Set<Product>();
     }
-
-    public async Task<List<Product>> GetProductsAsync()
+    public async Task<(List<Product> items, int totalItems)> GetProductsAsync(int pageNumber, int pageSize)
     {
-        return await _dbSet.ToListAsync().ConfigureAwait(false);
+        var totalItems = await _dbSet.CountAsync();
+
+        var items = await _dbSet
+            .OrderBy(p => p.Id)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (items, totalItems);
     }
+
 
     public async Task<Product> CreateProductAsync(Product product)
     {
@@ -30,5 +38,12 @@ public class ProductRepository
     public async Task<Product?> GetProductById(int id)
     {
         return await _dbSet.FindAsync(id);
+    }
+
+    public async Task<Product> UpdateProductAsync(Product product)
+    {
+        _dbSet.Entry(product).CurrentValues.SetValues(product);
+        await _context.SaveChangesAsync().ConfigureAwait(false); 
+        return product;  
     }
 }

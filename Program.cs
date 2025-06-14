@@ -3,6 +3,7 @@ using EcommerceApi.Repository;
 using EcommerceApi.Service;
 using Scalar.AspNetCore;
 using EcommerceApi;
+using EcommerceApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddAutoMapper(typeof(AppMapper));
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<MinioService>();
+builder.Services.AddScoped<ProductSeeder>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -27,6 +31,13 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var seeder = scope.ServiceProvider.GetRequiredService<ProductSeeder>();
+        await seeder.SeedAsync();
+    }
+
 }
 
 app.UseHttpsRedirection();
