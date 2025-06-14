@@ -17,8 +17,9 @@ public class ProductSeeder(ProductRepository productRepository)
         {
             var productFaker = new Faker<Product>()
                 .RuleFor(p => p.Name, f => f.Commerce.ProductName())
-                .RuleFor(p => p.Price, f => (int) decimal.Parse(f.Commerce.Price()))
-                .RuleFor(p => p.Description, f => f.Commerce.ProductDescription());
+                .RuleFor(p => p.Price, f => (int)decimal.Parse(f.Commerce.Price()))
+                .RuleFor(p => p.Description, f => f.Commerce.ProductDescription())
+                .RuleFor(p => p.ImageUrl, f => f.Image.PicsumUrl());
 
             var fakeProducts = productFaker.Generate(500);
             foreach (var fakeProduct in fakeProducts)

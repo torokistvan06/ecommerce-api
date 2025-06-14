@@ -23,31 +23,4 @@ public class ProductService(ProductRepository repository, MinioService minioServ
     {
         return await _repository.GetProductById(id) ?? throw new NotFoundException("Product not found");
     }
-
-    public async Task<Product> AddImageToProduct(int id, IFormFile file)
-    {
-        var product = await _repository.GetProductById(id) ?? throw new NotFoundException("Product not found");
-
-        var filePath = await _minioService.UploadImage(file);
-
-        product.ImagePath = filePath;
-
-        product = await _repository.UpdateProductAsync(product);
-
-        return product;
-    }
-
-    public async Task<Product> RemoveImageFromProdcut(int id)
-    {
-        
-        var product = await _repository.GetProductById(id) ?? throw new NotFoundException("Product not found");
-
-        await _minioService.DeleteImage(product.ImagePath!);
-
-        product.ImagePath = null;
-
-        product = await _repository.UpdateProductAsync(product);
-
-        return product;
-    }
 }

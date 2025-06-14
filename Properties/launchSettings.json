@@ -6,7 +6,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:8000"
+      "applicationUrl": "http://0.0.0.0:8000"
     },
     "https": {
       "commandName": "Project",
@@ -14,14 +14,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7120;http://localhost:8000"
+      "applicationUrl": "https://0.0.0.0:7120;http://0.0.0.0:8000"
     },
     "WSL": {
       "commandName": "WSL2",
-      "launchUrl": "https://localhost:7120",
+      "launchUrl": "https://0.0.0.0:7120",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "https://localhost:7120;http://localhost:8000"
+        "ASPNETCORE_URLS": "https://0.0.0.0:7120;http://0.0.0.0:8000"
       },
       "distributionName": ""
     },
@@ -38,7 +38,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:62790/",
+      "applicationUrl": "http://0.0.0.0:62790/",
       "sslPort": 44317
     }
   }
